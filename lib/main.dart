@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:project/article.dart';
 import 'package:project/detail_page.dart';
+import 'package:project/first_screen.dart';
+import 'package:project/widget-design/constraints_box.dart';
+import 'package:project/widget-design/layout_constraints.dart';
+import 'package:project/widget-design/material_design.dart';
+import 'package:project/widget-design/widget_design.dart';
 
 void main(){
   runApp(const MyApp());
@@ -17,15 +22,20 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity
       ),
-      initialRoute: NewsListPage.routeName,
+      initialRoute: '/',
       routes: {
+        '/':(context) => const FirstScreen(),
         NewsListPage.routeName:(context) => const NewsListPage(),
         ArticleDetailPage.routeName:(context) => ArticleDetailPage(
           article: ModalRoute.of(context)?.settings.arguments as Article,
         ),
         ArticleWebView.routeName:(context) => ArticleWebView(
           url: ModalRoute.of(context)?.settings.arguments as String,
-        )
+        ),
+        LayoutConstraints.routeName:(context) => const LayoutConstraints(),
+        WidgetDesign.routeName:(context) => const WidgetDesign(),
+        ConstraintsBoxArya.routeName:(context) => const ConstraintsBoxArya(),
+        MaterialDesignArya.routeName:(context) =>  const MaterialDesignArya()
       },
     );
   }
