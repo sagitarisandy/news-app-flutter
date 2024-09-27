@@ -2,9 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:project/article.dart';
 import 'package:project/detail_page.dart';
 import 'package:project/first_screen.dart';
+import 'package:project/widget-design/calculator.dart';
 import 'package:project/widget-design/constraints_box.dart';
+import 'package:project/widget-design/gesture_detector.dart';
 import 'package:project/widget-design/layout_constraints.dart';
 import 'package:project/widget-design/material_design.dart';
+import 'package:project/widget-design/theme/text_theme.dart';
+import 'package:project/widget-design/typography.dart';
 import 'package:project/widget-design/widget_design.dart';
 
 void main(){
@@ -18,9 +22,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'News App',
+      // theme: ThemeData(
+      //   primarySwatch: Colors.blue,
+      //   visualDensity: VisualDensity.adaptivePlatformDensity
+      // ),
       theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity
+        primarySwatch: Colors.blueGrey,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+        textTheme: myTextTheme
       ),
       initialRoute: '/',
       routes: {
@@ -35,7 +44,10 @@ class MyApp extends StatelessWidget {
         LayoutConstraints.routeName:(context) => const LayoutConstraints(),
         WidgetDesign.routeName:(context) => const WidgetDesign(),
         ConstraintsBoxArya.routeName:(context) => const ConstraintsBoxArya(),
-        MaterialDesignArya.routeName:(context) =>  const MaterialDesignArya()
+        MaterialDesignArya.routeName:(context) =>  const MaterialDesignArya(),
+        LoremIpsum.routeName:(context) => const LoremIpsum(),
+        GestureHome.routeName:(context) => const GestureHome(),
+        Calculator.routeName:(context) => const Calculator()
       },
     );
   }
