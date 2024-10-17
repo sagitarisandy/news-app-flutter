@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:project/article.dart';
-import 'package:project/detail_page.dart';
+import 'package:project/ui/article.dart';
+import 'package:project/ui/article_web_view.dart';
+import 'package:project/ui/detail_page.dart';
 import 'package:project/first_screen.dart';
+import 'package:project/ui/news_article_list_page.dart';
+import 'package:project/ui/news_list_page.dart';
+import 'package:project/pixel_page.dart';
+import 'package:project/styles.dart';
 import 'package:project/widget-design/calculator.dart';
 import 'package:project/widget-design/constraints_box.dart';
+import 'package:project/widget-design/cupertino-app-design/cupertino_app.dart';
+import 'package:project/widget-design/cupertino.dart';
 import 'package:project/widget-design/gesture_detector.dart';
+import 'package:project/widget-design/latihan-silver-list/learning_path_page.dart';
 import 'package:project/widget-design/layout_constraints.dart';
 import 'package:project/widget-design/material_design.dart';
 import 'package:project/widget-design/theme/text_theme.dart';
@@ -27,6 +35,11 @@ class MyApp extends StatelessWidget {
       //   visualDensity: VisualDensity.adaptivePlatformDensity
       // ),
       theme: ThemeData(
+        colorScheme: Theme.of(context).colorScheme.copyWith(
+          primary: primaryColor,
+          onPrimary: Colors.black,
+          secondary: secondaryColor
+        ),
         primarySwatch: Colors.blueGrey,
         visualDensity: VisualDensity.adaptivePlatformDensity,
         textTheme: myTextTheme
@@ -47,55 +60,13 @@ class MyApp extends StatelessWidget {
         MaterialDesignArya.routeName:(context) =>  const MaterialDesignArya(),
         LoremIpsum.routeName:(context) => const LoremIpsum(),
         GestureHome.routeName:(context) => const GestureHome(),
-        Calculator.routeName:(context) => const Calculator()
+        Calculator.routeName:(context) => const Calculator(),
+        PixelPage.routeName:(context) => const PixelPage(),
+        LearningPathPage.routeName:(context) => const LearningPathPage(),
+        AdaptivePage.routeName:(context) => const AdaptivePage(),
+        HomePage.routeName:(context) => const HomePage()
       },
     );
   }
 }
 
-class NewsListPage extends StatelessWidget{
-  static const routeName = '/artilce_list';
-
-  const NewsListPage({Key? key}) :super (key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('News App'),
-      ),
-      body: FutureBuilder<String>(
-        future:
-          DefaultAssetBundle.of(context).loadString('assets/articles.json'),
-        builder: (context, snapshot) {
-          final List<Article> articles = parseArticles(snapshot.data);
-          return ListView.builder(
-            itemCount: articles.length,
-            itemBuilder: (context, index){
-              return _buildArticleItem(context, articles[index]);
-            },
-          );
-        },
-      ),
-    );
-  }
-}
-
-Widget _buildArticleItem(BuildContext context, Article article) {
-  return ListTile(
-    contentPadding:
-        const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-    leading: Image.network(
-      article.urlToImage,
-      width: 100,
-      errorBuilder: (ctx, error, _) => const Center(child: Icon(Icons.error)),
-    ),
-    title: Text(article.title),
-    subtitle: Text(article.author),
-    onTap: () {
-      Navigator.pushNamed(context, ArticleDetailPage.routeName,
-        arguments: article
-      );
-    },
-  );
-}

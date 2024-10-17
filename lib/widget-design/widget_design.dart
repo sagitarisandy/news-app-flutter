@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:project/components/button.dart';
+import 'package:project/pixel_page.dart';
 import 'package:project/widget-design/calculator.dart';
 import 'package:project/widget-design/constraints_box.dart';
+import 'package:project/widget-design/cupertino-app-design/cupertino_app.dart';
+import 'package:project/widget-design/cupertino.dart';
 import 'package:project/widget-design/gesture_detector.dart';
+import 'package:project/widget-design/latihan-silver-list/learning_path_page.dart';
 import 'package:project/widget-design/layout_constraints.dart';
 import 'package:project/widget-design/material_design.dart';
 import 'package:project/widget-design/typography.dart';
@@ -20,41 +25,65 @@ class WidgetDesign extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            ElevatedButton(
+            CustomElevatedButton(
               onPressed: () {
                 Navigator.pushNamed(context, LayoutConstraints.routeName);
               },
-              child: const Text('Layout Constraints')
+              text: 'Layout Constraints'
             ),
-            ElevatedButton(
+            CustomElevatedButton(
               onPressed: () {
                 Navigator.pushNamed(context, ConstraintsBoxArya.routeName);
               },
-              child: const Text('Constraints Box')
+              text:'Constraints Box'
             ),
-            ElevatedButton(
+            CustomElevatedButton(
               onPressed: () {
                 Navigator.pushNamed(context, MaterialDesignArya.routeName);
               },
-              child: const Text('Material Design')
+              text:'Material Design'
             ),
-            ElevatedButton(
+            CustomElevatedButton(
               onPressed: () {
                 Navigator.pushNamed(context, LoremIpsum.routeName);
               },
-              child: const Text('Typography')
+              text:'Typography'
             ),
-            ElevatedButton(
+            CustomElevatedButton(
               onPressed: () {
                 Navigator.pushNamed(context, GestureHome.routeName);
               },
-              child: const Text('Gesture Detector')
+              text:'Gesture Detector'
             ),
-            ElevatedButton(
+            CustomElevatedButton(
               onPressed: () {
                 Navigator.pushNamed(context, Calculator.routeName);
               },
-              child: const Text('Calculator')
+              text:'Calculator'
+            ),
+            CustomElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, PixelPage.routeName);
+              },
+              text:'Pixel Page'
+            ),
+            CustomElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, LearningPathPage.routeName);
+              },
+              text:'Learning Path Page'
+            ),
+            CustomElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, AdaptivePage.routeName);
+              },
+              text:'Adaptive Page'
+            ),
+            CustomElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, HomePage.routeName);
+              },
+              text:'Cupertino App'
             ),
           ],
         ),

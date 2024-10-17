@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project/components/button.dart';
 import 'package:project/widget-design/layout_constraints.dart';
 import 'package:project/widget-design/widget_design.dart';
 
@@ -15,17 +16,17 @@ class FirstScreen extends StatelessWidget {
           children: <Widget>[
             Text('Learning from 20 September'),
             SizedBox(height:20),
-            ElevatedButton(
+            CustomElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/artilce_list');
+                Navigator.pushNamed(context, '/news_list_page');
               },
-              child: const Text('Go To News 📰')
+              text: 'Go To News 📰'
             ),
-            ElevatedButton(
+            CustomElevatedButton(
               onPressed: () {
                 Navigator.pushNamed(context, WidgetDesign.routeName);
               },
-              child: const Text('Widget UI Design 📝')
+              text: 'Widget UI Design 📝'
             )
           ],
         ),

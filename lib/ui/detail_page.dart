@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'article.dart';
+import 'package:project/components/button.dart';
+import 'package:project/ui/article_web_view.dart';
+import 'package:project/widgets/custom_scaffold.dart';
+import 'package:project/ui/article.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class ArticleDetailPage extends StatelessWidget{
@@ -11,14 +14,17 @@ class ArticleDetailPage extends StatelessWidget{
   
   @override
   Widget build(BuildContext context){
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(article.title),
-      ),
+    return CustomScaffold(
+      // appBar: AppBar(
+      //   title: Text(article.title),
+      // ),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Image.network(article.urlToImage),
+            Hero(
+              tag: article.urlToImage,
+              child: Image.network(article.urlToImage),
+            ),
             Padding(
               padding: const EdgeInsets.all(10),
               child: Column(
@@ -44,14 +50,14 @@ class ArticleDetailPage extends StatelessWidget{
                     style: const TextStyle(fontSize: 16),
                   ),
                   const SizedBox(height: 10),
-                  ElevatedButton(
+                  CustomElevatedButton(
                     onPressed: () {
                       // print('disini');
                       Navigator.pushNamed(context, ArticleWebView.routeName,
                         arguments: article.url
                       );
                     },
-                    child: const Text('Read More')
+                    text: 'Read More'
                   )
                 ],
               ),
@@ -59,27 +65,6 @@ class ArticleDetailPage extends StatelessWidget{
           
           ],
         ),
-      ),
-    );
-  }
-}
-
-class ArticleWebView extends StatelessWidget {
-  static const routeName = '/article_web';
-
-  final String url;
-
-  const ArticleWebView({Key? key, required this.url}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('News App'),
-      ),
-      body: WebView(
-        initialUrl: url,
-        javascriptMode: JavascriptMode.unrestricted, // Enables JavaScript
       ),
     );
   }
